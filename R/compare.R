@@ -1,7 +1,6 @@
 #' Compare two objects
 #'
-#' Compare two objects using [compare::compare] and ignoring any specified
-#' attributes.
+#' Compare two objects using [compare::compare], ignoring specified attributes.
 #'
 #' @param model 1
 #' @param comparison 2

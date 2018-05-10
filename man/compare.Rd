@@ -14,8 +14,7 @@ compare(model, comparison, ignore_attr = NULL, ...)
 \item{...}{3}
 }
 \description{
-Compare two objects using \link[compare:compare]{compare::compare} and ignoring any specified
-attributes.
+Compare two objects using \link[compare:compare]{compare::compare}, ignoring specified attributes.
 }
 \examples{
 # Ignore spec attribute created by readr functions
