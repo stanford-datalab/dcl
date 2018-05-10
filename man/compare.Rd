@@ -19,4 +19,5 @@ Compare two objects using \link[compare:compare]{compare::compare}, ignoring spe
 \examples{
 # Ignore spec attribute created by readr functions
 compare(answers$q1, q1, ignore_attr = "spec")
+
 }
