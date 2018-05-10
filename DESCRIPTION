@@ -9,3 +9,7 @@ LazyData: true
 ByteCompile: true
 URL: https://github.com/stanford-datalab/dcl
 BugReports: https://github.com/stanford-datalab/dcl/issues
+Imports: 
+    compare
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
