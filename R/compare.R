@@ -1,20 +1,21 @@
 #' Compare two objects
 #'
-#' This uses [compare::compare] with some tweaks designed to
-#' checking of DCL exercises easier.
+#' This uses [compare::compare] to compare two objects with the
+#' ability to ignore specified attributes.
 #'
-#' @param model !!!!!
-#' @param comparison
-#' @param ...
+#' @param model 1
+#' @param comparison 2
+#' @param ... 3
 #'
 #' @export
 #'
 #' @examples
-#' # This is a comment
-#' compare(mtcars, mtcars)
-compare <- function(model, comparison, ...) {
-  attr(model, "col_spec") <- NULL
-  attr(comparison, "col_spec") <- NULL
-
+#' # Ignore spec attribute created by readr functions
+#' compare(answers$q1, q1, ignore_attr = "spec")
+compare <- function(model, comparison, ignore_attr = NULL, ...) {
+  for (i in seq_along(ignore_attr)) {
+    attr(model, ignore[[i]]) <- NULL
+    attr(comparison, ignore[[i]]) <- NULL
+  }
   compare::compare(model, comparison, ...)
 }

@@ -4,18 +4,20 @@
 \alias{compare}
 \title{Compare two objects}
 \usage{
-compare(model, comparison, ...)
+compare(model, comparison, ignore_attr = NULL, ...)
 }
 \arguments{
-\item{model}{!!!!!}
+\item{model}{1}
 
-\item{...}{}
+\item{comparison}{2}
+
+\item{...}{3}
 }
 \description{
-This uses \link[compare:compare]{compare::compare} with some tweaks designed to
-checking of DCL exercises easier.
+This uses \link[compare:compare]{compare::compare} to compare two objects with the
+ability to ignore specified attributes.
 }
 \examples{
-# This is a comment
-compare(mtcars, mtcars)
+# Ignore spec attribute created by readr functions
+compare(answers$q1, q1, ignore_attr = "spec")
 }
