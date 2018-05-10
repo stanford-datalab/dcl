@@ -7,9 +7,15 @@
 compare(model, comparison, ...)
 }
 \arguments{
+\item{model}{!!!!!}
+
 \item{...}{}
 }
 \description{
 This uses \link[compare:compare]{compare::compare} with some tweaks designed to
 checking of DCL exercises easier.
+}
+\examples{
+# This is a comment
+compare(mtcars, mtcars)
 }
