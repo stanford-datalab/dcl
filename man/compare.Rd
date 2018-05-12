@@ -7,14 +7,17 @@
 compare(model, comparison, ignore_attr = NULL, ...)
 }
 \arguments{
-\item{model}{1}
+\item{model}{The "correct" object.}
 
-\item{comparison}{2}
+\item{comparison}{The object to be compared with \code{model}.}
 
-\item{...}{3}
+\item{ignore_attr}{String or list of strings specifying attributes to ignore.}
+
+\item{...}{Arguments to be passed to \code{compare::compare()}.}
 }
 \description{
-Compare two objects using \link[compare:compare]{compare::compare}, ignoring specified attributes.
+Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring column order and any
+attributes specified with \code{ignore_attr}.
 }
 \examples{
 # Ignore spec attribute created by readr functions
