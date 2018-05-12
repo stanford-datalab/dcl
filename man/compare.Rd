@@ -11,7 +11,7 @@ compare(model, comparison, ignore_attrs = NULL, ...)
 
 \item{comparison}{The object to be compared with \code{model}.}
 
-\item{ignore_attrs}{String or list of strings specifying attributes to ignore.}
+\item{ignore_attrs}{String or vector of strings specifying attributes to ignore.}
 
 \item{...}{Arguments to be passed to \code{compare::compare()}.}
 }
@@ -20,7 +20,10 @@ Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ign
 with \code{ignore_attrs}.
 }
 \examples{
-# Ignore spec attribute created by readr functions
+# Ignore `spec` attribute
 compare(answers$q1, q1, ignore_attrs = "spec")
+
+# Ignore `spec` and `problems` attributes
+compare(answers$q1, q1, ignore_attrs = c("spec", "problems"))
 
 }
