@@ -16,8 +16,8 @@ compare(model, comparison, ignore_attr = NULL, ...)
 \item{...}{Arguments to be passed to \code{compare::compare()}.}
 }
 \description{
-Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring column order and any
-attributes specified with \code{ignore_attr}.
+Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring attributes specified
+with \code{ignore_attr}.
 }
 \examples{
 # Ignore spec attribute created by readr functions

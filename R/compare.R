@@ -1,7 +1,7 @@
 #' Compare two objects
 #'
-#' Compare two objects using [compare::compare()], ignoring column order and any
-#' attributes specified with `ignore_attr`.
+#' Compare two objects using [compare::compare()], ignoring attributes specified
+#'  with `ignore_attr`.
 #'
 #' @param model       The "correct" object.
 #' @param comparison  The object to be compared with `model`.
@@ -19,5 +19,5 @@ compare <- function(model, comparison, ignore_attr = NULL, ...) {
     attr(model, attr) <- NULL
     attr(comparison, attr) <- NULL
   }
-  compare::compare(model, comparison, ignoreColOrder = TRUE, ...)
+  compare::compare(model, comparison, ...)
 }
