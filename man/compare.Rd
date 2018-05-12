@@ -4,23 +4,23 @@
 \alias{compare}
 \title{Compare two objects}
 \usage{
-compare(model, comparison, ignore_attr = NULL, ...)
+compare(model, comparison, ignore_attrs = NULL, ...)
 }
 \arguments{
 \item{model}{The "correct" object.}
 
 \item{comparison}{The object to be compared with \code{model}.}
 
-\item{ignore_attr}{String or list of strings specifying attributes to ignore.}
+\item{ignore_attrs}{String or list of strings specifying attributes to ignore.}
 
 \item{...}{Arguments to be passed to \code{compare::compare()}.}
 }
 \description{
 Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring attributes specified
-with \code{ignore_attr}.
+with \code{ignore_attrs}.
 }
 \examples{
 # Ignore spec attribute created by readr functions
-compare(answers$q1, q1, ignore_attr = "spec")
+compare(answers$q1, q1, ignore_attrs = "spec")
 
 }
