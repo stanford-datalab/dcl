@@ -15,9 +15,9 @@
 #' compare(answers$q1, q1, ignore_attr = "spec")
 #'
 compare <- function(model, comparison, ignore_attr = NULL, ...) {
-  for (i in seq_along(ignore_attr)) {
-    attr(model, ignore[[i]]) <- NULL
-    attr(comparison, ignore[[i]]) <- NULL
+  for (attr in ignore_attr) {
+    attr(model, attr) <- NULL
+    attr(comparison, attr) <- NULL
   }
   compare::compare(model, comparison, ignoreColOrder = TRUE, ...)
 }
