@@ -1,11 +1,11 @@
 #' Compare two objects
 #'
-#' Compare two objects using [compare::compare()], ignoring attributes specified
-#' with `ignore_attrs`.
+#' Compare two objects using [compare::compare()], ignoring attributes in
+#' `ignore_attrs`.
 #'
 #' @param model        The "correct" object.
 #' @param comparison   The object to be compared with `model`.
-#' @param ignore_attrs String or vector of strings specifying attributes to ignore.
+#' @param ignore_attrs String or vector of strings of attributes to ignore.
 #' @param ...          Arguments to be passed to `compare::compare()`.
 #'
 #' @export
