@@ -27,13 +27,13 @@ attr(df2, "spec") <- "a"
 df3 <- df2
 attr(df3, "problems") <- "b"
 
-# Ignore `spec` attribute by default
+# Ignore spec attribute by default
 compare(df1, df2)
 
 # Do not ignore attributes
 compare(df1, df2, ignore_attrs = NULL)
 
-Ignore `spec` and `problems` attributes
+# Ignore spec and problems attributes
 compare(df1, df3, ignore_attrs = c("spec", "problems"))
 
 }
