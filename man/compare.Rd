@@ -4,26 +4,36 @@
 \alias{compare}
 \title{Compare two objects}
 \usage{
-compare(model, comparison, ignore_attrs = NULL, ...)
+compare(model, comparison, ignore_attrs = "spec", ...)
 }
 \arguments{
 \item{model}{The "correct" object.}
 
 \item{comparison}{The object to be compared with \code{model}.}
 
-\item{ignore_attrs}{String or vector of strings of attributes to ignore.}
+\item{ignore_attrs}{String or vector of strings of attributes to ignore.
+Default is to ignore \code{spec} attribute. Use \code{NULL} to not ignore attributes.}
 
 \item{...}{Arguments to be passed to \code{compare::compare()}.}
 }
 \description{
-Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring attributes in
-\code{ignore_attrs}.
+Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring \code{spec} attribute by
+default.
 }
 \examples{
-# Ignore `spec` attribute
-compare(answers$q1, q1, ignore_attrs = "spec")
+df1 <- data.frame(x = 1, y = 2)
+df2 <- df1
+attr(df2, "spec") <- "a"
+df3 <- df2
+attr(df3, "problems") <- "b"
 
-# Ignore `spec` and `problems` attributes
-compare(answers$q1, q1, ignore_attrs = c("spec", "problems"))
+# Ignore `spec` attribute by default
+compare(df1, df2)
+
+# Do not ignore attributes
+compare(df1, df2, ignore_attrs = NULL)
+
+Ignore `spec` and `problems` attributes
+compare(df1, df3, ignore_attrs = c("spec", "problems"))
 
 }
