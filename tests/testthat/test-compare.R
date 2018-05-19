@@ -30,6 +30,15 @@ test_that("Do not ignore attributes", {
   expect_false(compare::isTRUE(compare(df1, df2, ignore_attrs = NULL)))
 })
 
+test_that("Ignore problem attribute", {
+  df1 <- data.frame(x = 1, y = 2)
+  attr(df1, "spec") <- "a"
+  df2 <- df1
+  attr(df2, "problems") <- "b"
+
+  expect_true(compare::isTRUE(compare(df1, df2, ignore_attrs = "problems")))
+})
+
 test_that("Ignore spec and problem attributes", {
   df1 <- data.frame(x = 1, y = 2)
   attr(df1, "spec") <- "a"
