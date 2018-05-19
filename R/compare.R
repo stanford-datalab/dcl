@@ -28,7 +28,7 @@
 #' compare(df2, df3, ignore_attrs = "problems")
 #'
 #' # Ignore spec and problems attributes
-#' compare(df2, df3, ignore_attrs = c("spec", "problems"))
+#' compare(df1, df3, ignore_attrs = c("spec", "problems"))
 #'
 compare <- function(model, comparison, ignore_attrs = "spec", ...) {
   if (!is.null(ignore_attrs) && !is.character(unlist(ignore_attrs))) {

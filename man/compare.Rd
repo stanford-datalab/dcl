@@ -37,6 +37,6 @@ compare(df1, df2, ignore_attrs = NULL)
 compare(df2, df3, ignore_attrs = "problems")
 
 # Ignore spec and problems attributes
-compare(df2, df3, ignore_attrs = c("spec", "problems"))
+compare(df1, df3, ignore_attrs = c("spec", "problems"))
 
 }
