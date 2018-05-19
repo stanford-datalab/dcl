@@ -1,5 +1,5 @@
 Package: dcl
-Version: 0.1.0
+Version: 0.1.0.9000
 Title: Tools for Data Challenge Lab
 Description: Tools for Data Challenge Lab
 Authors@R: person("Bill", "Behrman", , "behrman@stanford.edu", c("aut", "cre"))
