@@ -1,8 +1,13 @@
 Package: dcl
-Version: 0.1.0.9000
+Version: 0.1.1.9000
 Title: Tools for Data Challenge Lab
-Description: Tools for Data Challenge Lab
-Authors@R: person("Bill", "Behrman", , "behrman@stanford.edu", c("aut", "cre"))
+Description: Tools for Data Challenge Lab.
+Authors@R: 
+  person(
+    "Bill", "Behrman", 
+    email = "behrman@stanford.edu", 
+    role = c("aut", "cre")
+  )
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -10,6 +15,9 @@ ByteCompile: true
 URL: https://github.com/stanford-datalab/dcl
 BugReports: https://github.com/stanford-datalab/dcl/issues
 Imports: 
-    compare
-RoxygenNote: 6.0.1
+  compare,
+  dplyr
+Suggests:
+  testthat
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
