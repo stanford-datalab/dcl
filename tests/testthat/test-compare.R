@@ -14,10 +14,11 @@ test_that("Different objects", {
   expect_false(compare::isTRUE(compare(df1, df2)))
 })
 
-test_that("Ignore spec attribute", {
+test_that("Ignore spec and problems attributes", {
   df1 <- data.frame(x = 1, y = 2)
   df2 <- df1
   attr(df2, "spec") <- "a"
+  attr(df2, "problems") <- "b"
 
   expect_true(compare::isTRUE(compare(df1, df2)))
 })
@@ -26,28 +27,9 @@ test_that("Do not ignore attributes", {
   df1 <- data.frame(x = 1, y = 2)
   df2 <- df1
   attr(df2, "spec") <- "a"
+  attr(df2, "problems") <- "b"
 
   expect_false(compare::isTRUE(compare(df1, df2, ignore_attrs = NULL)))
-})
-
-test_that("Ignore problems attribute", {
-  df1 <- data.frame(x = 1, y = 2)
-  attr(df1, "spec") <- "a"
-  df2 <- df1
-  attr(df2, "problems") <- "b"
-
-  expect_true(compare::isTRUE(compare(df1, df2, ignore_attrs = "problems")))
-})
-
-test_that("Ignore spec and problems attributes", {
-  df1 <- data.frame(x = 1, y = 2)
-  df2 <- df1
-  attr(df2, "spec") <- "a"
-  attr(df2, "problems") <- "b"
-
-  expect_true(
-    compare::isTRUE(compare(df1, df2, ignore_attrs = c("spec", "problems")))
-  )
 })
 
 test_that("Ignore spec_tbl_df class", {
@@ -66,23 +48,18 @@ test_that("Do not ignore classes", {
   expect_false(compare::isTRUE(compare(df1, df2, ignore_classes = NULL)))
 })
 
-test_that("Ignore problems class", {
+test_that("Ignore foo attribute", {
   df1 <- data.frame(x = 1, y = 2)
-  attr(df1, "class") <- c("spec_tbl_df", attr(df1, "class"))
   df2 <- df1
-  attr(df2, "class") <- c("problems", attr(df2, "class"))
+  attr(df2, "foo") <- "a"
 
-  expect_true(compare::isTRUE(compare(df1, df2, ignore_classes = "problems")))
+  expect_true(compare::isTRUE(compare(df1, df2, ignore_attrs = "foo")))
 })
 
-test_that("Ignore spec and problems classes", {
+test_that("Ignore bar class", {
   df1 <- data.frame(x = 1, y = 2)
   df2 <- df1
-  attr(df2, "class") <- c("spec_tbl_df", "problems", attr(df2, "class"))
+  attr(df2, "class") <- c("bar", attr(df1, "class"))
 
-  expect_true(
-    compare::isTRUE(
-      compare(df1, df2, ignore_classes = c("spec_tbl_df", "problems"))
-    )
-  )
+  expect_true(compare::isTRUE(compare(df1, df2, ignore_classes = "bar")))
 })
