@@ -5,7 +5,7 @@
 \title{Compare two objects}
 \usage{
 compare(model, comparison, ignore_attrs = c("spec", "problems"),
-  ignore_classes = "spec_tbl_df", ...)
+  ignore_classes = "spec_tbl_df", ignore_empty = TRUE, ...)
 }
 \arguments{
 \item{model}{The "correct" object.}
@@ -19,11 +19,13 @@ ignore attributes.}
 \item{ignore_classes}{String or vector of strings of classes to ignore.
 Default is to ignore \code{spec_tbl_df} class. Use \code{NULL} to not ignore classes.}
 
+\item{ignore_empty}{Ignore empty attributes. Default is \code{TRUE}.}
+
 \item{...}{Arguments to be passed to \code{compare::compare()}.}
 }
 \description{
-Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring \code{spec} and
-\code{problems} attributes and \code{spec_tbl_df} class by default.
+Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring by default: empty
+attributes,\code{spec} and \code{problems} attributes, and \code{spec_tbl_df} class.
 }
 \examples{
 df1 <- data.frame(x = 1, y = 2)

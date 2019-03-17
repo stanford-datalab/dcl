@@ -1,7 +1,7 @@
 #' Compare two objects
 #'
-#' Compare two objects using [compare::compare()], ignoring `spec` and
-#' `problems` attributes and `spec_tbl_df` class by default.
+#' Compare two objects using [compare::compare()], ignoring by default: empty
+#'  attributes,`spec` and `problems` attributes, and `spec_tbl_df` class.
 #'
 #' @param model        The "correct" object.
 #' @param comparison   The object to be compared with `model`.
@@ -10,6 +10,7 @@
 #' ignore attributes.
 #' @param ignore_classes String or vector of strings of classes to ignore.
 #' Default is to ignore `spec_tbl_df` class. Use `NULL` to not ignore classes.
+#' @param ignore_empty Ignore empty attributes. Default is `TRUE`.
 #' @param ...          Arguments to be passed to `compare::compare()`.
 #'
 #' @export
@@ -38,7 +39,7 @@
 #'
 compare <- function(
   model, comparison, ignore_attrs = c("spec", "problems"),
-  ignore_classes = "spec_tbl_df", ...
+  ignore_classes = "spec_tbl_df", ignore_empty = TRUE, ...
 ) {
   if (!is.null(ignore_attrs) && !is.character(unlist(ignore_attrs))) {
     stop("ignore_attrs must be NULL, a string, or a vector of strings")
@@ -50,8 +51,12 @@ compare <- function(
     attr(model, attr) <- NULL
     attr(comparison, attr) <- NULL
   }
-  attr(model, "class") <- dplyr::setdiff(attr(model, "class"), ignore_classes)
+  attr(model, "class") <- setdiff(attr(model, "class"), ignore_classes)
   attr(comparison, "class") <-
-    dplyr::setdiff(attr(comparison, "class"), ignore_classes)
+    setdiff(attr(comparison, "class"), ignore_classes)
+  if (isTRUE(ignore_empty)) {
+    attributes(model) <- compact(attributes(model))
+    attributes(comparison) <- compact(attributes(comparison))
+  }
   compare::compare(model, comparison, ...)
 }
