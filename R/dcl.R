@@ -1,4 +1,4 @@
-#' \code{dcl} package
+#' dcl
 #'
 #' Package to support Stanford Data Challenge Lab.
 #'

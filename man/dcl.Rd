@@ -4,7 +4,7 @@
 \name{dcl}
 \alias{dcl}
 \alias{dcl-package}
-\title{\code{dcl} package}
+\title{dcl}
 \description{
-Package to support Data Challenge Lab.
+Package to support Stanford Data Challenge Lab.
 }
