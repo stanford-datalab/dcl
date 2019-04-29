@@ -4,11 +4,20 @@
 \alias{compare_attributes}
 \title{Compare attributes}
 \usage{
-compare_attributes(x, y)
+compare_attributes(x, y, compare_attrs = c("class", "names",
+  "row.names"), ignore_classes = "spec_tbl_df")
 }
 \arguments{
 \item{x, y}{Objects for which to compare attributes.}
+
+\item{compare_attrs}{String or vector of strings of attributes to compare.
+Default is to compare only \code{class}, \code{names}, and \code{row.names} attributes. Use
+\code{NULL} to compare all attributes.}
+
+\item{ignore_classes}{String or vector of strings of classes to ignore.
+Default is to ignore \code{spec_tbl_df} class. Use \code{NULL} to not ignore classes.}
 }
 \description{
-Compares attributes of two objects.
+Compares attributes of two objects, comparing only the attributes in
+\code{compare_attrs} and ignoring classes in \code{ignore_classes}.
 }

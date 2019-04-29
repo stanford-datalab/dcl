@@ -4,49 +4,34 @@
 \alias{compare}
 \title{Compare two objects}
 \usage{
-compare(model, comparison, ignore_attrs = c("spec", "problems"),
-  ignore_classes = "spec_tbl_df", ignore_empty = TRUE, ...)
+compare(model, comparison, compare_attrs = c("class", "names",
+  "row.names"), ignore_classes = "spec_tbl_df", ...)
 }
 \arguments{
 \item{model}{The "correct" object.}
 
 \item{comparison}{The object to be compared with \code{model}.}
 
-\item{ignore_attrs}{String or vector of strings of attributes to ignore.
-Default is to ignore \code{spec} and \code{problems} attributes. Use \code{NULL} to not
-ignore attributes.}
+\item{compare_attrs}{String or vector of strings of attributes to compare.
+Default is to compare only \code{class}, \code{names}, and \code{row.names} attributes. Use
+\code{NULL} to compare all attributes.}
 
 \item{ignore_classes}{String or vector of strings of classes to ignore.
 Default is to ignore \code{spec_tbl_df} class. Use \code{NULL} to not ignore classes.}
 
-\item{ignore_empty}{Ignore empty attributes. Default is \code{TRUE}.}
-
 \item{...}{Arguments to be passed to \code{compare::compare()}.}
 }
 \description{
-Compare two objects using \code{\link[compare:compare]{compare::compare()}}, ignoring by default: empty
-attributes,\code{spec} and \code{problems} attributes, and \code{spec_tbl_df} class.
+Compare two objects using \code{\link[compare:compare]{compare::compare()}}, comparing only the attributes
+in \code{compare_attrs} and ignoring classes in \code{ignore_classes}.
 }
 \examples{
 df1 <- data.frame(x = 1, y = 2)
 df2 <- df1
-attr(df2, "spec") <- "a"
-attr(df2, "problems") <- "b"
 attr(df2, "class") <- c("spec_tbl_df", attr(df1, "class"))
-df3 <- df1
-attr(df3, "foo") <- "a"
-attr(df3, "class") <- c("bar", attr(df1, "class"))
+attr(df2, "foo") <- "bar"
 
-# Ignore spec and problems attributes and spec_tbl_df class by default
+# Compare objects
 compare(df1, df2)
-
-# Do not ignore attributes or classes
-compare(df1, df2, ignore_attrs = NULL, ignore_classes = NULL)
-
-# Ignore foo attribute
-compare(df2, df3, ignore_attrs = "foo")
-
-# Ignore bar class
-compare(df1, df3, ignore_classes = "bar")
 
 }

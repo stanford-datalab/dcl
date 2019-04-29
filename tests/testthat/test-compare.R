@@ -1,5 +1,3 @@
-context("test-compare.R")
-
 test_that("Identical objects", {
   df1 <- data.frame(x = 1, y = 2)
   df2 <- df1
@@ -14,22 +12,20 @@ test_that("Different objects", {
   expect_false(compare::isTRUE(compare(df1, df2)))
 })
 
-test_that("Ignore spec and problems attributes", {
+test_that("Compare only class, names, and row.names attributes", {
   df1 <- data.frame(x = 1, y = 2)
   df2 <- df1
-  attr(df2, "spec") <- "a"
-  attr(df2, "problems") <- "b"
+  attr(df2, "foo") <- "a"
 
   expect_true(compare::isTRUE(compare(df1, df2)))
 })
 
-test_that("Do not ignore attributes", {
+test_that("Compare all attributes", {
   df1 <- data.frame(x = 1, y = 2)
   df2 <- df1
-  attr(df2, "spec") <- "a"
-  attr(df2, "problems") <- "b"
+  attr(df2, "foo") <- "a"
 
-  expect_false(compare::isTRUE(compare(df1, df2, ignore_attrs = NULL)))
+  expect_false(compare::isTRUE(compare(df1, df2, compare_attrs = NULL)))
 })
 
 test_that("Ignore spec_tbl_df class", {
@@ -48,12 +44,22 @@ test_that("Do not ignore classes", {
   expect_false(compare::isTRUE(compare(df1, df2, ignore_classes = NULL)))
 })
 
-test_that("Ignore foo attribute", {
+test_that("Compare attributes with different orders", {
   df1 <- data.frame(x = 1, y = 2)
   df2 <- df1
-  attr(df2, "foo") <- "a"
+  attributes(df2) <- rev(attributes(df1))
 
-  expect_true(compare::isTRUE(compare(df1, df2, ignore_attrs = "foo")))
+  expect_true(compare::isTRUE(compare(df1, df2)))
+})
+
+test_that("Compare foo attribute", {
+  df1 <- data.frame(x = 1, y = 2)
+  attr(df1, "foo") <- "a"
+  attr(df1, "bar") <- "b"
+  df2 <- df1
+  attr(df2, "bar") <- "c"
+
+  expect_true(compare::isTRUE(compare(df1, df2, compare_attrs = "foo")))
 })
 
 test_that("Ignore bar class", {
@@ -62,23 +68,4 @@ test_that("Ignore bar class", {
   attr(df2, "class") <- c("bar", attr(df1, "class"))
 
   expect_true(compare::isTRUE(compare(df1, df2, ignore_classes = "bar")))
-})
-
-test_that("Ignore empty attributes", {
-  df1 <- data.frame(x = 1, y = 2)
-  df2 <- df1
-  attr(df2, "a") <- logical(0)
-  attr(df2, "b") <- integer(0)
-  attr(df2, "c") <- double(0)
-  attr(df2, "d") <- character(0)
-
-  expect_true(compare::isTRUE(compare(df1, df2)))
-})
-
-test_that("Do not ignore empty attributes", {
-  df1 <- data.frame(x = 1, y = 2)
-  df2 <- df1
-  attr(df2, "a") <- logical(0)
-
-  expect_false(compare::isTRUE(compare(df1, df2, ignore_empty = FALSE)))
 })

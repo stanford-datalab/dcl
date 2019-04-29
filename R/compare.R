@@ -1,62 +1,47 @@
 #' Compare two objects
 #'
-#' Compare two objects using [compare::compare()], ignoring by default: empty
-#'  attributes,`spec` and `problems` attributes, and `spec_tbl_df` class.
+#' Compare two objects using [compare::compare()], comparing only the attributes
+#' in `compare_attrs` and ignoring classes in `ignore_classes`.
 #'
-#' @param model        The "correct" object.
-#' @param comparison   The object to be compared with `model`.
-#' @param ignore_attrs String or vector of strings of attributes to ignore.
-#' Default is to ignore `spec` and `problems` attributes. Use `NULL` to not
-#' ignore attributes.
+#' @param model          The "correct" object.
+#' @param comparison     The object to be compared with `model`.
+#' @param compare_attrs  String or vector of strings of attributes to compare.
+#' Default is to compare only `class`, `names`, and `row.names` attributes. Use
+#' `NULL` to compare all attributes.
 #' @param ignore_classes String or vector of strings of classes to ignore.
 #' Default is to ignore `spec_tbl_df` class. Use `NULL` to not ignore classes.
-#' @param ignore_empty Ignore empty attributes. Default is `TRUE`.
-#' @param ...          Arguments to be passed to `compare::compare()`.
+#' @param ...            Arguments to be passed to `compare::compare()`.
 #'
 #' @export
 #'
 #' @examples
 #' df1 <- data.frame(x = 1, y = 2)
 #' df2 <- df1
-#' attr(df2, "spec") <- "a"
-#' attr(df2, "problems") <- "b"
 #' attr(df2, "class") <- c("spec_tbl_df", attr(df1, "class"))
-#' df3 <- df1
-#' attr(df3, "foo") <- "a"
-#' attr(df3, "class") <- c("bar", attr(df1, "class"))
+#' attr(df2, "foo") <- "bar"
 #'
-#' # Ignore spec and problems attributes and spec_tbl_df class by default
+#' # Compare objects
 #' compare(df1, df2)
 #'
-#' # Do not ignore attributes or classes
-#' compare(df1, df2, ignore_attrs = NULL, ignore_classes = NULL)
-#'
-#' # Ignore foo attribute
-#' compare(df2, df3, ignore_attrs = "foo")
-#'
-#' # Ignore bar class
-#' compare(df1, df3, ignore_classes = "bar")
-#'
 compare <- function(
-  model, comparison, ignore_attrs = c("spec", "problems"),
-  ignore_classes = "spec_tbl_df", ignore_empty = TRUE, ...
+  model, comparison, compare_attrs = c("class", "names", "row.names"),
+  ignore_classes = "spec_tbl_df", ...
 ) {
-  if (!is.null(ignore_attrs) && !is.character(unlist(ignore_attrs))) {
-    stop("ignore_attrs must be NULL, a string, or a vector of strings")
+  if (!is.null(compare_attrs) && !is.character(unlist(compare_attrs))) {
+    stop("compare_attrs must be NULL, a string, or a vector of strings")
   }
   if (!is.null(ignore_classes) && !is.character(unlist(ignore_classes))) {
     stop("ignore_classes must be NULL, a string, or a vector of strings")
   }
-  for (attr in ignore_attrs) {
-    attr(model, attr) <- NULL
-    attr(comparison, attr) <- NULL
-  }
   attr(model, "class") <- setdiff(attr(model, "class"), ignore_classes)
   attr(comparison, "class") <-
     setdiff(attr(comparison, "class"), ignore_classes)
-  if (isTRUE(ignore_empty)) {
-    attributes(model) <- compact(attributes(model))
-    attributes(comparison) <- compact(attributes(comparison))
+  if (!is.null(compare_attrs)) {
+    attrs <- attributes(model)
+    attributes(model) <- attrs[sort(intersect(names(attrs), compare_attrs))]
+    attrs <- attributes(comparison)
+    attributes(comparison) <-
+      attrs[sort(intersect(names(attrs), compare_attrs))]
   }
   compare::compare(model, comparison, ...)
 }
