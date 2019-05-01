@@ -5,15 +5,15 @@
 #'
 #' @param x,y            Objects for which to compare attributes.
 #' @param compare_attrs  String or vector of strings of attributes to compare.
-#' Default is to compare only `class`, `names`, and `row.names` attributes. Use
-#' `NULL` to compare all attributes.
+#' Default is to compare only `class`, `groups`, `names`, and `row.names`
+#' attributes. Use `NULL` to compare all attributes.
 #' @param ignore_classes String or vector of strings of classes to ignore.
 #' Default is to ignore `spec_tbl_df` class. Use `NULL` to not ignore classes.
 #'
 #' @export
 #'
 compare_attributes <- function(
-  x, y, compare_attrs = c("class", "names", "row.names"),
+  x, y, compare_attrs = c("class", "names", "groups", "row.names"),
   ignore_classes = "spec_tbl_df"
 ) {
   if (!is.null(compare_attrs) && !is.character(unlist(compare_attrs))) {

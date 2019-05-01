@@ -4,7 +4,7 @@
 \alias{compare}
 \title{Compare two objects}
 \usage{
-compare(model, comparison, compare_attrs = c("class", "names",
+compare(model, comparison, compare_attrs = c("class", "names", "groups",
   "row.names"), ignore_classes = "spec_tbl_df", ...)
 }
 \arguments{
@@ -13,8 +13,8 @@ compare(model, comparison, compare_attrs = c("class", "names",
 \item{comparison}{The object to be compared with \code{model}.}
 
 \item{compare_attrs}{String or vector of strings of attributes to compare.
-Default is to compare only \code{class}, \code{names}, and \code{row.names} attributes. Use
-\code{NULL} to compare all attributes.}
+Default is to compare only \code{class}, \code{groups}, \code{names}, and \code{row.names}
+attributes. Use \code{NULL} to compare all attributes.}
 
 \item{ignore_classes}{String or vector of strings of classes to ignore.
 Default is to ignore \code{spec_tbl_df} class. Use \code{NULL} to not ignore classes.}

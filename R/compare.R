@@ -6,8 +6,8 @@
 #' @param model          The "correct" object.
 #' @param comparison     The object to be compared with `model`.
 #' @param compare_attrs  String or vector of strings of attributes to compare.
-#' Default is to compare only `class`, `names`, and `row.names` attributes. Use
-#' `NULL` to compare all attributes.
+#' Default is to compare only `class`, `groups`, `names`, and `row.names`
+#' attributes. Use `NULL` to compare all attributes.
 #' @param ignore_classes String or vector of strings of classes to ignore.
 #' Default is to ignore `spec_tbl_df` class. Use `NULL` to not ignore classes.
 #' @param ...            Arguments to be passed to `compare::compare()`.
@@ -24,7 +24,7 @@
 #' compare(df1, df2)
 #'
 compare <- function(
-  model, comparison, compare_attrs = c("class", "names", "row.names"),
+  model, comparison, compare_attrs = c("class", "names", "groups", "row.names"),
   ignore_classes = "spec_tbl_df", ...
 ) {
   if (!is.null(compare_attrs) && !is.character(unlist(compare_attrs))) {
