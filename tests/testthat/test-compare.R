@@ -5,9 +5,23 @@ test_that("Identical objects", {
   expect_true(compare::isTRUE(compare(df1, df2)))
 })
 
+test_that("Identical grouped objects", {
+  df1 <- dplyr::group_by(data.frame(x = 1, y = 2), x)
+  df2 <- df1
+
+  expect_true(compare::isTRUE(compare(df1, df2)))
+})
+
 test_that("Different objects", {
   df1 <- data.frame(x = 1, y = 2)
   df2 <- data.frame(x = 2, y = 1)
+
+  expect_false(compare::isTRUE(compare(df1, df2)))
+})
+
+test_that("Objects that differ by grouping", {
+  df1 <- data.frame(x = 1, y = 2)
+  df2 <- dplyr::group_by(df1, x)
 
   expect_false(compare::isTRUE(compare(df1, df2)))
 })
