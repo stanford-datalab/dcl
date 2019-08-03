@@ -2,9 +2,9 @@
 
 export(compare)
 export(compare_attributes)
+export(make_project)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,setdiff)
 importFrom(dplyr,union)
-importFrom(purrr,compact)
 importFrom(stringr,str_glue)
 importFrom(tibble,glimpse)
