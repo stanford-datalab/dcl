@@ -7,7 +7,7 @@
 make_project(path, ...)
 }
 \arguments{
-\item{path}{Path for project folder}
+\item{path}{Path for project folder.}
 
 \item{...}{Ignored.}
 }

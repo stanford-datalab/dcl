@@ -4,7 +4,7 @@
 #' scripts, docs, eda, and reports.
 #' Available from RStudio: File > New Project... > New Directory > DCL project
 #'
-#' @param path Path for project folder
+#' @param path Path for project folder.
 #' @param ...  Ignored.
 #'
 #' @export
