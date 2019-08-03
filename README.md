@@ -1,1 +1,1 @@
-# Tools for Stanford Data Challenge Lab
+# Tools for Data Challenge Lab
