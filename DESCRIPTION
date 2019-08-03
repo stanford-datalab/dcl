@@ -15,7 +15,7 @@ Authors@R:
       role = "aut"
     )
   )
-License: GPL-3
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
