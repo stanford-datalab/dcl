@@ -18,6 +18,6 @@ attributes. Use \code{NULL} to compare all attributes.}
 Default is to ignore \code{spec_tbl_df} class. Use \code{NULL} to not ignore classes.}
 }
 \description{
-Compares attributes of two objects, comparing only the attributes in
+Compare attributes of two objects, including only the attributes in
 \code{compare_attrs} and ignoring classes in \code{ignore_classes}.
 }

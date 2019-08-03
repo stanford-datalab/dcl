@@ -1,6 +1,6 @@
 #' Compare attributes
 #'
-#' Compares attributes of two objects, comparing only the attributes in
+#' Compare attributes of two objects, including only the attributes in
 #' `compare_attrs` and ignoring classes in `ignore_classes`.
 #'
 #' @param x,y            Objects for which to compare attributes.
