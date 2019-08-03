@@ -5,11 +5,10 @@
 #' Available from RStudio: File > New Project... > New Directory > DCL project
 #'
 #' @param path Path for project folder.
-#' @param ...  Ignored.
 #'
 #' @export
 #'
-make_project <- function(path, ...) {
+make_project <- function(path) {
   folders <-
     c(
       "Raw data" = "data-raw",

@@ -4,12 +4,10 @@
 \alias{make_project}
 \title{Create project folder}
 \usage{
-make_project(path, ...)
+make_project(path)
 }
 \arguments{
 \item{path}{Path for project folder.}
-
-\item{...}{Ignored.}
 }
 \description{
 Create a project folder with Makefile and sub-folders: data-raw, data,
