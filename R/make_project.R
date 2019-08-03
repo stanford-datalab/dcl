@@ -18,20 +18,25 @@ make_project <- function(path) {
       "EDA" = "eda",
       "Reports" = "reports"
     )
-  create_readme <- function(path, name) {
+  create_readme <- function(path, name, ...) {
     path_readme <- file.path(path, "README.md")
     file.create(path_readme, showWarnings = FALSE)
-    writeLines(text = paste0("# ", name, "\n"), con = path_readme)
+    writeLines(text = paste0("# ", name, "\n", ...), con = path_readme)
   }
 
   dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
-  create_readme(path = path, name = "Project")
+  create_readme(
+    path = path,
+    name = "Project",
+    "\nFor explanation of how to use see ",
+    "[example project](https://github.com/dcl-docs/project-example).\n"
+  )
   file.copy(
-    from = system.file("resources/.gitignore", package = "dcl"),
+    from = system.file("resources/project/.gitignore", package = "dcl"),
     to = path
   )
   file.copy(
-    from = system.file("resources/Makefile", package = "dcl"),
+    from = system.file("resources/project/Makefile", package = "dcl"),
     to = path
   )
 
