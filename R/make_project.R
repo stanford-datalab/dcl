@@ -18,16 +18,16 @@ make_project <- function(path) {
       "EDA" = "eda",
       "Reports" = "reports"
     )
-  create_readme <- function(path, name, ...) {
+  create_readme <- function(path, title, ...) {
     path_readme <- file.path(path, "README.md")
     file.create(path_readme, showWarnings = FALSE)
-    writeLines(text = paste0("# ", name, "\n", ...), con = path_readme)
+    writeLines(text = paste0("# ", title, "\n", ...), con = path_readme)
   }
 
   dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
   create_readme(
     path = path,
-    name = "Project",
+    title = "Project",
     "\nFor explanation of how to use see ",
     "[example project](https://github.com/dcl-docs/project-example).\n"
   )
@@ -43,6 +43,6 @@ make_project <- function(path) {
   for (i in seq_along(folders)) {
     path_folder <- file.path(path, folders[[i]])
     dir.create(path = path_folder, showWarnings = FALSE, recursive = TRUE)
-    create_readme(path = path_folder, name = names(folders)[[i]])
+    create_readme(path = path_folder, title = names(folders)[[i]])
   }
 }
