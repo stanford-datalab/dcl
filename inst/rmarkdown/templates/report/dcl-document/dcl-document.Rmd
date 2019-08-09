@@ -1,0 +1,32 @@
+---
+title: 
+author: 
+date: "`r Sys.Date()`"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+# Libraries
+library(tidyverse)
+
+# Parameters
+file_data <- here::here("")
+
+#===============================================================================
+
+# Read in data
+```
+
+## Section 1
+
+### Subsection
+
+## Section 2
+
+## Section 3
