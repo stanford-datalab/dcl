@@ -5,7 +5,8 @@
 \title{Compare two objects}
 \usage{
 compare(model, comparison, compare_attrs = c("class", "names", "groups",
-  "row.names"), ignore_classes = "spec_tbl_df", ...)
+  "row.names"), ignore_classes = "spec_tbl_df",
+  ignore_component_attrs = TRUE, ...)
 }
 \arguments{
 \item{model}{The "correct" object.}
@@ -18,6 +19,8 @@ attributes. Use \code{NULL} to compare all attributes.}
 
 \item{ignore_classes}{String or vector of strings of classes to ignore.
 Default is to ignore \code{spec_tbl_df} class. Use \code{NULL} to not ignore classes.}
+
+\item{ignore_component_attrs}{Ignore attributes of object components.}
 
 \item{...}{Arguments to be passed to \code{compare::compare()}.}
 }
