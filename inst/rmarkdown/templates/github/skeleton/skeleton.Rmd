@@ -16,11 +16,10 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 
 # Parameters
-file_data <- here::here("")
 
 #===============================================================================
 
-# Read in data
+# Code
 ```
 
 ## Section 1
@@ -29,4 +28,3 @@ file_data <- here::here("")
 
 ## Section 2
 
-## Section 3
