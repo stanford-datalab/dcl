@@ -3,8 +3,8 @@
 \docType{package}
 \name{dcl}
 \alias{dcl}
-\alias{dcl-package}
 \title{dcl}
 \description{
 Package to support Stanford Data Challenge Lab.
 }
+\keyword{internal}

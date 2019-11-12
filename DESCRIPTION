@@ -4,13 +4,15 @@ Title: Tools for Data Challenge Lab
 Description: Tools for Data Challenge Lab.
 Authors@R: 
   c(
-      person(
-      "Sara", "Altman", 
+    person(
+      given = "Sara",
+      family = "Altman", 
       email = "skaltman@stanford.edu", 
       role = "aut"
     ),
     person(
-      "Bill", "Behrman", 
+      given = "Bill",
+      family = "Behrman", 
       email = "behrman@stanford.edu", 
       role = c("aut", "cre")
     )
@@ -28,5 +30,5 @@ Imports:
   tibble
 Suggests:
   testthat
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 Roxygen: list(markdown = TRUE)

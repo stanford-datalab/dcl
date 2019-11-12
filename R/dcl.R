@@ -4,6 +4,7 @@
 #'
 #' @docType package
 #' @name dcl
+#' @keywords internal
 #' @importFrom dplyr %>% setdiff union
 #' @importFrom stringr str_glue
 #' @importFrom tibble glimpse

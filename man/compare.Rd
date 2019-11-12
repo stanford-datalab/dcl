@@ -4,9 +4,14 @@
 \alias{compare}
 \title{Compare two objects}
 \usage{
-compare(model, comparison, compare_attrs = c("class", "names", "groups",
-  "row.names"), ignore_classes = "spec_tbl_df",
-  ignore_component_attrs = TRUE, ...)
+compare(
+  model,
+  comparison,
+  compare_attrs = c("class", "names", "groups", "row.names"),
+  ignore_classes = "spec_tbl_df",
+  ignore_component_attrs = TRUE,
+  ...
+)
 }
 \arguments{
 \item{model}{The "correct" object.}

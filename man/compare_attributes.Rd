@@ -4,8 +4,12 @@
 \alias{compare_attributes}
 \title{Compare attributes}
 \usage{
-compare_attributes(x, y, compare_attrs = c("class", "names", "groups",
-  "row.names"), ignore_classes = "spec_tbl_df")
+compare_attributes(
+  x,
+  y,
+  compare_attrs = c("class", "names", "groups", "row.names"),
+  ignore_classes = "spec_tbl_df"
+)
 }
 \arguments{
 \item{x, y}{Objects for which to compare attributes.}
