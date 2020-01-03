@@ -24,11 +24,13 @@ ByteCompile: true
 URL: https://github.com/stanford-datalab/dcl
 BugReports: https://github.com/stanford-datalab/dcl/issues
 Imports: 
-  compare,
-  dplyr,
-  stringr,
-  tibble
+    compare,
+    dplyr,
+    stringr,
+    tibble,
+    fs,
+    purrr
 Suggests:
   testthat
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.1
 Roxygen: list(markdown = TRUE)

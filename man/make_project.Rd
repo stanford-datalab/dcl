@@ -4,10 +4,15 @@
 \alias{make_project}
 \title{Create project folder}
 \usage{
-make_project(path)
+make_project(
+  path,
+  template_url = "https://github.com/dcl-docs/project/archive/master.zip"
+)
 }
 \arguments{
 \item{path}{Path for project folder.}
+
+\item{template_url}{Download URL of template repository}
 }
 \description{
 Create a project folder with Makefile and sub-folders: data-raw, data,

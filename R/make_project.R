@@ -1,3 +1,4 @@
+
 #' Create project folder
 #'
 #' Create a project folder with Makefile and sub-folders: data-raw, data,
@@ -5,44 +6,29 @@
 #' Available from RStudio: File > New Project... > New Directory > DCL project
 #'
 #' @param path Path for project folder.
+#' @param template_url Download URL of template repository
 #'
 #' @export
 #'
-make_project <- function(path) {
-  folders <-
-    c(
-      "Raw data" = "data-raw",
-      "Processed data" = "data",
-      "Scripts" = "scripts",
-      "Docs" = "docs",
-      "EDA" = "eda",
-      "Reports" = "reports"
-    )
-  create_readme <- function(path, title, ...) {
-    path_readme <- file.path(path, "README.md")
-    file.create(path_readme, showWarnings = FALSE)
-    writeLines(text = paste0("# ", title, "\n", ...), con = path_readme)
+make_project <- function(path,
+                         template_url =
+                           "https://github.com/dcl-docs/project/archive/master.zip") {
+
+  dir_temp <- tempdir()
+  file_zip <- fs::file_temp(tmp_dir = dir_temp)
+  if (utils::download.file(template_url, destfile = file_zip, quiet = TRUE)) {
+    stop("Failed to reach template repository. Are you connected to the internet?")
   }
 
-  dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
-  create_readme(
-    path = path,
-    title = "Project",
-    "\nFor explanation of how to use see ",
-    "[example project](https://github.com/dcl-docs/project-example).\n"
-  )
-  file.copy(
-    from = system.file("resources/project/.gitignore", package = "dcl"),
-    to = path
-  )
-  file.copy(
-    from = system.file("resources/project/Makefile", package = "dcl"),
-    to = path
-  )
+  files <- utils::unzip(file_zip, exdir = dir_temp)
 
-  for (i in seq_along(folders)) {
-    path_folder <- file.path(path, folders[[i]])
-    dir.create(path = path_folder, showWarnings = FALSE, recursive = TRUE)
-    create_readme(path = path_folder, title = names(folders)[[i]])
-  }
+  dir_unzip <-
+    files[[1]] %>%
+    stringr::str_remove(stringr::str_glue("{dir_temp}/")) %>%
+    dirname()
+
+  fs::dir_ls(path = fs::path(dir_temp, dir_unzip)) %>%
+    purrr::walk(~ file.copy(from = ., to = path, recursive = TRUE))
+
+  unlink(file_zip, recursive = TRUE)
 }
