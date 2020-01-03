@@ -14,6 +14,8 @@ create_data_project <- function(path,
                                 template_url =
                                   "https://github.com/dcl-docs/project/archive/master.zip") {
 
+  dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
+
   dir_temp <- tempdir()
   file_zip <- fs::file_temp(tmp_dir = dir_temp)
   if (utils::download.file(template_url, destfile = file_zip, quiet = TRUE)) {
