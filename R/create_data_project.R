@@ -10,9 +10,9 @@
 #'
 #' @export
 #'
-make_project <- function(path,
-                         template_url =
-                           "https://github.com/dcl-docs/project/archive/master.zip") {
+create_data_project <- function(path,
+                                template_url =
+                                  "https://github.com/dcl-docs/project/archive/master.zip") {
 
   dir_temp <- tempdir()
   file_zip <- fs::file_temp(tmp_dir = dir_temp)
