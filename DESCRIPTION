@@ -27,8 +27,10 @@ Imports:
   compare,
   dplyr,
   stringr,
-  tibble
+  tibble,
+  fs,
+  purrr
 Suggests:
   testthat
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.1
 Roxygen: list(markdown = TRUE)
