@@ -15,18 +15,18 @@ create_data_project(
 \arguments{
 \item{path}{Path for project folder.}
 
-\item{project}{Should this be an RStudio project?}
+\item{project}{Boolean. Should this be an RStudio project?}
 
-\item{template}{Download URL of template repository}
+\item{template}{Download URL of template repository.}
 
-\item{rstudio}{Are you using RStudio?}
+\item{rstudio}{Boolean. Are you using RStudio?}
 
 \item{open}{Boolean. If \code{project} is \code{TRUE} and \code{open} is \code{TRUE}, will
 open the project in a new session.}
 }
 \description{
 Creates a project from a zipped template file. By default, creates a project
-with 6 folders:
+from this template: https://github.com/dcl-docs/project
 }
 \examples{
 \donttest{create_data_project("path/to/project")}
