@@ -104,7 +104,6 @@ copy_file <- function(path, new_path, all = TRUE) {
 #' @param path Path to directory
 #'
 #' @return Boolean.
-#' @internal
 #'
 dir_empty <- function(path) {
   length(dir_ls(path)) == 0
