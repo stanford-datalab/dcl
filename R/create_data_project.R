@@ -1,7 +1,8 @@
 
 #' Create a project from a template
 #'
-#' Creates a project from a zipped template file.
+#' Creates a project from a zipped template file. By default, creates a project
+#' with 6 folders:
 #'
 #' @param path Path for project folder.
 #' @param project Should this be an RStudio project?
@@ -22,7 +23,7 @@ create_data_project <- function(
   open = interactive()
 ) {
 
-  path <- usethis:::user_path_prep(path)
+  path <- path_expand(path)
   name <- path_file(path)
 
   if (project) {
@@ -43,6 +44,7 @@ create_data_project <- function(
     invisible(proj_get())
   }
 }
+
 
 #' Create and populate a directory from a template
 #'
@@ -65,44 +67,45 @@ create_data_project <- function(
 create_directory_from_template <- function(path, url_template) {
   usethis:::create_directory(path)
 
-  dir_temp <- tempdir()
-  file_zip <- fs::file_temp(tmp_dir = dir_temp)
-  if (utils::download.file(url_template, destfile = file_zip, quiet = TRUE)) {
-    stop("Failed to reach template repository. Are you connected to the internet?")
-  }
-
-  files <- utils::unzip(file_zip, exdir = dir_temp)
+  # TO DO: If directory is not empty prompt user
+  # check_is_empty(path)
 
   dir_unzip <-
-    files[[1]] %>%
-    stringr::str_remove(stringr::str_glue("{dir_temp}/")) %>%
-    dirname()
+    file_download_unzip(url_file = url_template, path = path)
 
-  copy_directory(path = path(dir_temp, dir_unzip), new_path = path)
-
-  unlink(file_zip, recursive = TRUE)
+  copy_file(dir_unzip, new_path = path)
+  unlink(dir_unzip, recursive = TRUE)
 }
 
-#' Recursively copy a directory.
+#' Copies files and recursively copies directories.
 #'
-#' @description Recursively copies a directory, printing out messages saying which
+#' @description Recursively copies a file, printing out messages saying which
 #' sub-directories were created.
 #'
-#' @param path Path of the directory to copy.
-#' @param new_path Path to copy directory to.
+#' @param path Path of the file to copy.
+#' @param new_path Path to copy file to.
 #' @param all Boolean. If `TRUE`, will copy hidden files as well.
 #'
 #' @return Prints out messages saying which sub-directories it created.
 #' @export
 #'
 #' @examples
-#' \donttest{copy_directory(path = "old/dir", new_path = "new/dir")}
-copy_directory <- function(path, new_path, all = TRUE) {
-  fs::dir_ls(path, all = all) %>%
-    purrr::walk(file.copy, to = new_path, recursive = TRUE, overwrite = TRUE)
+#' \donttest{copy_file(path = "old/dir", new_path = "new/dir")}
+copy_file <- function(path, new_path, all = TRUE) {
+  dir_ls(path, all = all) %>%
+    walk(file.copy, to = new_path, recursive = TRUE, overwrite = TRUE)
 
-  fs::dir_ls(new_path, type = "directory") %>%
-    purrr::walk(~ ui_done("Creating {ui_path(basename(.))}"))
+  dir_ls(new_path, type = "directory") %>%
+    walk(~ ui_done("Creating {ui_path(path_file(.))} folder"))
 }
 
-
+#' Check if a directory is empty
+#'
+#' @param path Path to directory
+#'
+#' @return Boolean.
+#' @internal
+#'
+dir_empty <- function(path) {
+  length(dir_ls(path)) == 0
+}

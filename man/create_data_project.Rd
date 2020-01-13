@@ -25,7 +25,8 @@ create_data_project(
 open the project in a new session.}
 }
 \description{
-Creates a project from a zipped template file.
+Creates a project from a zipped template file. By default, creates a project
+with 6 folders:
 }
 \examples{
 \donttest{create_data_project("path/to/project")}
