@@ -67,9 +67,6 @@ create_data_project <- function(
 create_directory_from_template <- function(path, url_template) {
   usethis:::create_directory(path)
 
-  # TO DO: If directory is not empty prompt user
-  # check_is_empty(path)
-
   dir_unzip <-
     file_download_unzip(url_file = url_template, path = path)
 
@@ -95,8 +92,11 @@ copy_file <- function(path, new_path, all = TRUE) {
   dir_ls(path, all = all) %>%
     walk(file.copy, to = new_path, recursive = TRUE, overwrite = TRUE)
 
+  dir_ls(new_path, type = "file") %>%
+    walk(~ ui_done("Writing {ui_path(path_file(.))}"))
+
   dir_ls(new_path, type = "directory") %>%
-    walk(~ ui_done("Creating {ui_path(path_file(.))} folder"))
+    walk(~ ui_done("Creating {ui_path(path_file(.))}"))
 }
 
 #' Check if a directory is empty
