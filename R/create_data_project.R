@@ -9,8 +9,6 @@
 #' @param open If `TRUE` and `project` is `TRUE`, activates the project. If you're
 #' using RStudio, this will result in the project opening in a new session.
 #'
-#' Boolean. If `project` is `TRUE` and `open` is `TRUE`, will
-#' open the project in a new session.
 #'
 #' @export
 #'
