@@ -4,10 +4,12 @@
 #' from this template: https://github.com/dcl-docs/project
 #'
 #' @param path Path for project folder.
-#' @param project Boolean. Should this be an RStudio project?
+#' @param project If `TRUE`, creates an RStudio project.
 #' @param template Download URL of template repository.
-#' @param rstudio Boolean. Are you using RStudio?
-#' @param open Boolean. If `project` is `TRUE` and `open` is `TRUE`, will
+#' @param open If `TRUE` and `project` is `TRUE`, activates the project. If you're
+#' using RStudio, this will result in the project opening in a new session.
+#'
+#' Boolean. If `project` is `TRUE` and `open` is `TRUE`, will
 #' open the project in a new session.
 #'
 #' @export
@@ -18,7 +20,6 @@ create_data_project <- function(
   path,
   project = TRUE,
   template = "https://github.com/dcl-docs/project/archive/master.zip",
-  rstudio = rstudioapi::isAvailable(),
   open = interactive()
 ) {
 
@@ -34,12 +35,15 @@ create_data_project <- function(
   if (project) {
     old_project <- proj_set(path, force = TRUE)
     on.exit(proj_set(old_project), add = TRUE)
-    if (rstudio) {
+
+    if (rstudioapi::isAvailable()) {
       use_rstudio()
     }
+
     if (open & proj_activate(path)) {
       on.exit()
     }
+
     invisible(proj_get())
   }
 }
