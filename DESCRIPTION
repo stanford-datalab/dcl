@@ -27,7 +27,9 @@ Imports:
   compare,
   dplyr,
   stringr,
-  tibble
+  tibble,
+  fs,
+  purrr
 Suggests:
   testthat
 RoxygenNote: 7.0.2

@@ -2,7 +2,7 @@
 
 export(compare)
 export(compare_attributes)
-export(make_project)
+export(create_data_project)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,setdiff)
 importFrom(dplyr,union)
