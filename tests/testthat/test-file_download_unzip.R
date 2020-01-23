@@ -16,4 +16,6 @@ test_that("file_download_unzip() removes temporary zip file", {
   expect_true(length(dir_ls("tmp")) == 1)
 })
 
+unlink("temp", recursive = TRUE)
+
 
