@@ -1,36 +1,112 @@
-
-#' Create project folder
+#' Create a project from a template
 #'
-#' Create a project folder with Makefile and sub-folders: data-raw, data,
-#' scripts, docs, eda, and reports.
-#' Available from RStudio: File > New Project... > New Directory > DCL project
+#' Creates a project from a template. By default, creates a project
+#' from this template: \url{https://github.com/dcl-docs/project}
 #'
-#' @param path Path for project folder.
-#' @param template_url Download URL of template repository
+#' @param path A path giving the location for the new project. If it does not already exist, it is created.
+#' @param project If `TRUE`, creates an RStudio project.
+#' @param template Download URL of template repository. Defaults to the dcl-docs
+#' project template.
+#' @param open If `TRUE` and `project` is `TRUE`, activates the project. If you're
+#' using RStudio, this will result in the project opening in a new session.
 #'
 #' @export
 #'
-create_data_project <- function(path,
-                                template_url =
-                                  "https://github.com/dcl-docs/project/archive/master.zip") {
+#' @examples
+#' \donttest{create_data_project("path/to/project")}
+create_data_project <- function(
+  path,
+  project = TRUE,
+  template = "https://github.com/dcl-docs/project/archive/master.zip",
+  open = interactive()
+) {
 
-  dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
+  path <- path_expand(path)
+  name <- path_file(path)
 
-  dir_temp <- tempdir()
-  file_zip <- fs::file_temp(tmp_dir = dir_temp)
-  if (utils::download.file(template_url, destfile = file_zip, quiet = TRUE)) {
-    stop("Failed to reach template repository. Are you connected to the internet?")
+  if (project) {
+    usethis:::check_not_nested(path_dir(path), name)
   }
 
-  files <- utils::unzip(file_zip, exdir = dir_temp)
+  create_directory_from_template(path, template)
+
+  if (project) {
+    old_project <- proj_set(path, force = TRUE)
+    on.exit(proj_set(old_project), add = TRUE)
+
+    if (rstudioapi::isAvailable()) {
+      use_rstudio()
+    }
+
+    if (open & proj_activate(path)) {
+      on.exit()
+    }
+
+    invisible(proj_get())
+  }
+}
+
+
+#' Create and populate a directory from a template
+#'
+#' @description Recursively creates a directory using a template downloaded from
+#' the internet.
+#'
+#' @param path Path to create directory.
+#' @param url_template A GitHub repository download link.
+#'
+#' @return Prints out messages saying the directory were created.
+#' @keywords internal
+#'
+#' @examples
+#' \donttest{
+#' create_directory_from_template(
+#'   "new_dir",
+#'   "https://github.com/dcl-docs/project/archive/master.zip"
+#' )
+#' }
+create_directory_from_template <- function(path, url_template) {
+  usethis:::create_directory(path)
 
   dir_unzip <-
-    files[[1]] %>%
-    stringr::str_remove(stringr::str_glue("{dir_temp}/")) %>%
-    dirname()
+    file_download_unzip(url_file = url_template, path = path)
 
-  fs::dir_ls(path = fs::path(dir_temp, dir_unzip)) %>%
-    purrr::walk(~ file.copy(from = ., to = path, recursive = TRUE))
+  copy_file(dir_unzip, new_path = path)
+  unlink(dir_unzip, recursive = TRUE)
+}
 
-  unlink(file_zip, recursive = TRUE)
+#' Copies files and recursively copies directories.
+#'
+#' @description Recursively copies a file, printing out messages saying which
+#' sub-directories were created.
+#'
+#' @param path Path of the file to copy.
+#' @param new_path Path to copy file to.
+#' @param all Boolean. If `TRUE`, will copy hidden files as well.
+#'
+#' @return Prints out messages saying which sub-directories it created.
+#' @keywords internal
+#'
+#' @examples
+#' \donttest{copy_file(path = "old/dir", new_path = "new/dir")}
+copy_file <- function(path, new_path, all = TRUE) {
+  dir_ls(path, all = all) %>%
+    walk(file.copy, to = new_path, recursive = TRUE, overwrite = TRUE)
+
+  dir_ls(new_path, type = "file") %>%
+    walk(~ ui_done("Writing {ui_path(path_file(.))}"))
+
+  dir_ls(new_path, type = "directory") %>%
+    walk(~ ui_done("Creating {ui_path(path_file(.))}"))
+}
+
+#' Check if a directory is empty
+#'
+#' @param path Path to directory
+#'
+#' @return Boolean.
+#' @keywords internal
+#'
+dir_empty <- function(path) {
+  length(dir_ls(path)) == 0
 }
