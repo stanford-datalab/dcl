@@ -30,7 +30,8 @@ Imports:
     tibble,
     fs,
     purrr,
-    usethis
+    usethis,
+    rstudioapi
 Suggests:
     testthat (>= 2.1.0)
 RoxygenNote: 7.0.2

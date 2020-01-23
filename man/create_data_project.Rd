@@ -12,21 +12,19 @@ create_data_project(
 )
 }
 \arguments{
-\item{path}{Path for project folder.}
+\item{path}{A path giving the location for the new project. If it does not already exist, it is created.}
 
 \item{project}{If \code{TRUE}, creates an RStudio project.}
 
-\item{template}{Download URL of template repository.}
+\item{template}{Download URL of template repository. Defaults to the dcl-docs
+project template.}
 
 \item{open}{If \code{TRUE} and \code{project} is \code{TRUE}, activates the project. If you're
-using RStudio, this will result in the project opening in a new session.
-
-Boolean. If \code{project} is \code{TRUE} and \code{open} is \code{TRUE}, will
-open the project in a new session.}
+using RStudio, this will result in the project opening in a new session.}
 }
 \description{
-Creates a project from a zipped template file. By default, creates a project
-from this template: https://github.com/dcl-docs/project
+Creates a project from a template. By default, creates a project
+from this template: \url{https://github.com/dcl-docs/project}
 }
 \examples{
 \donttest{create_data_project("path/to/project")}

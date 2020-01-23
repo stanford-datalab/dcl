@@ -1,14 +1,14 @@
 #' Create a project from a template
 #'
-#' Creates a project from a zipped template file. By default, creates a project
-#' from this template: https://github.com/dcl-docs/project
+#' Creates a project from a template. By default, creates a project
+#' from this template: \url{https://github.com/dcl-docs/project}
 #'
-#' @param path Path for project folder.
+#' @param path A path giving the location for the new project. If it does not already exist, it is created.
 #' @param project If `TRUE`, creates an RStudio project.
-#' @param template Download URL of template repository.
+#' @param template Download URL of template repository. Defaults to the dcl-docs
+#' project template.
 #' @param open If `TRUE` and `project` is `TRUE`, activates the project. If you're
 #' using RStudio, this will result in the project opening in a new session.
-#'
 #'
 #' @export
 #'
