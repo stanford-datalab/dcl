@@ -56,7 +56,7 @@ create_data_project <- function(
 #' @param url_template A GitHub repository download link.
 #'
 #' @return Prints out messages saying the directory were created.
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' \donttest{
@@ -85,7 +85,7 @@ create_directory_from_template <- function(path, url_template) {
 #' @param all Boolean. If `TRUE`, will copy hidden files as well.
 #'
 #' @return Prints out messages saying which sub-directories it created.
-#' @export
+#' @keywords internal
 #'
 #' @examples
 #' \donttest{copy_file(path = "old/dir", new_path = "new/dir")}
@@ -105,6 +105,7 @@ copy_file <- function(path, new_path, all = TRUE) {
 #' @param path Path to directory
 #'
 #' @return Boolean.
+#' @keywords internal
 #'
 dir_empty <- function(path) {
   length(dir_ls(path)) == 0

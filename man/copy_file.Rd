@@ -23,3 +23,4 @@ sub-directories were created.
 \examples{
 \donttest{copy_file(path = "old/dir", new_path = "new/dir")}
 }
+\keyword{internal}

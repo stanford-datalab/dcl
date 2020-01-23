@@ -26,3 +26,4 @@ create_directory_from_template(
 )
 }
 }
+\keyword{internal}

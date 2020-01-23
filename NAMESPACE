@@ -2,9 +2,7 @@
 
 export(compare)
 export(compare_attributes)
-export(copy_file)
 export(create_data_project)
-export(create_directory_from_template)
 export(file_download_unzip)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,setdiff)

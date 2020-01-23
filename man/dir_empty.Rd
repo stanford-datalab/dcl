@@ -15,3 +15,4 @@ Boolean.
 \description{
 Check if a directory is empty
 }
+\keyword{internal}
