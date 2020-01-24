@@ -83,21 +83,3 @@ test_that("Ignore bar class", {
 
   expect_true(compare::isTRUE(compare(df1, df2, ignore_classes = "bar")))
 })
-
-test_that("Ignore component attributes", {
-  df1 <- data.frame(x = 1, y = 2)
-  df2 <- df1
-  attr(df2$x, "foo") <- "a"
-
-  expect_true(compare::isTRUE(compare(df1, df2)))
-})
-
-test_that("Do not ignore component attributes", {
-  df1 <- data.frame(x = 1, y = 2)
-  df2 <- df1
-  attr(df2$x, "foo") <- "a"
-
-  expect_false(
-    compare::isTRUE(compare(df1, df2, ignore_component_attrs = FALSE))
-  )
-})

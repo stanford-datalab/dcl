@@ -10,8 +10,6 @@
 #' attributes. Use `NULL` to compare all attributes.
 #' @param ignore_classes  String or vector of strings of classes to ignore.
 #' Default is to ignore `spec_tbl_df` class. Use `NULL` to not ignore classes.
-#' @param ignore_component_attrs  Ignore attributes of object components for
-#' non-sf objects.
 #' @param ...  Arguments to be passed to `compare::compare()`.
 #'
 #' @export
@@ -27,7 +25,7 @@
 #'
 compare <- function(
   model, comparison, compare_attrs = c("class", "names", "groups", "row.names"),
-  ignore_classes = "spec_tbl_df", ignore_component_attrs = TRUE, ...
+  ignore_classes = "spec_tbl_df", ...
 ) {
   if (!is.null(compare_attrs) && !is.character(unlist(compare_attrs))) {
     stop("compare_attrs must be NULL, a string, or a vector of strings")
@@ -44,18 +42,6 @@ compare <- function(
     attrs <- attributes(comparison)
     attributes(comparison) <-
       attrs[sort(intersect(names(attrs), compare_attrs))]
-  }
-  if (
-    ignore_component_attrs &&
-    !("sf" %in% class(model)) &&
-    !("sf" %in% class(comparison))
-  ) {
-    for (name in names(model)) {
-      attributes(model[[name]]) <- NULL
-    }
-    for (name in names(comparison)) {
-      attributes(comparison[[name]]) <- NULL
-    }
   }
   compare::compare(model, comparison, ...)
 }
