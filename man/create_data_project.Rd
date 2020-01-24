@@ -2,20 +2,30 @@
 % Please edit documentation in R/create_data_project.R
 \name{create_data_project}
 \alias{create_data_project}
-\title{Create project folder}
+\title{Create a project from a template}
 \usage{
 create_data_project(
   path,
-  template_url = "https://github.com/dcl-docs/project/archive/master.zip"
+  project = TRUE,
+  template = "https://github.com/dcl-docs/project/archive/master.zip",
+  open = interactive()
 )
 }
 \arguments{
-\item{path}{Path for project folder.}
+\item{path}{A path giving the location for the new project. If it does not already exist, it is created.}
 
-\item{template_url}{Download URL of template repository}
+\item{project}{If \code{TRUE}, creates an RStudio project.}
+
+\item{template}{Download URL of template repository. Defaults to the dcl-docs
+project template.}
+
+\item{open}{If \code{TRUE} and \code{project} is \code{TRUE}, activates the project. If you're
+using RStudio, this will result in the project opening in a new session.}
 }
 \description{
-Create a project folder with Makefile and sub-folders: data-raw, data,
-scripts, docs, eda, and reports.
-Available from RStudio: File > New Project... > New Directory > DCL project
+Creates a project from a template. By default, creates a project
+from this template: \url{https://github.com/dcl-docs/project}
+}
+\examples{
+\donttest{create_data_project("path/to/project")}
 }
