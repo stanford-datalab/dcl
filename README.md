@@ -12,8 +12,10 @@ The package contains the following functions:
 
 * `compare()`: Compare two objects.
 * `compare_attributes()`: Compare attributes of two objects.
+* `create_data_project()`: Create a project from a template
 
 It contains the following templates:
 
 * An R Markdown template for GitHub documents (_File_ > _New File_ > _R Markdown..._ > _From Template_ > _DCL GitHub Document_).
-* A project template to set up folders and files for the [DCL project workflow](https://github.com/dcl-docs/project-example) (_File_ > _New Project..._ > _New Directory_ > _DCL Project_).
+
+For an explanation of the project structure created by `create_data_project()`, see [Chapter 5](https://dcl-workflow.stanford.edu/project-setup.html) and [Chapter 6](https://dcl-workflow.stanford.edu/organization.html) from our [Worklow](https://dcl-workflow.stanford.edu/) book.
