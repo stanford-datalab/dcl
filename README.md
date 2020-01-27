@@ -16,4 +16,5 @@ The package contains the following functions:
 
 It also contains an R Markdown template for GitHub documents (_File_ > _New File_ > _R Markdown..._ > _From Template_ > _DCL GitHub Document_).
 
-For an explanation of the project structure created by `create_data_project()`, see [Chapter 5](https://dcl-workflow.stanford.edu/project-setup.html) and [Chapter 6](https://dcl-workflow.stanford.edu/organization.html) from our [Worklow](https://dcl-workflow.stanford.edu/) book.
+For an explanation of the project structure created by `create_data_project()`, see [Chapter 5](https://dcl-workflow.stanford.edu/project-setup.html) and [Chapter 6](https://dcl-workflow.stanford.edu/organization.html) from our [Workflow](https://dcl-workflow.stanford.edu/) book.
+
