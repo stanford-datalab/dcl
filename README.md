@@ -4,8 +4,8 @@ Tools for Data Challenge Lab
 You can install this R package with
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("stanford-datalab/dcl")
+# install.packages("remotes")
+remotes::install_github("stanford-datalab/dcl")
 ```
 
 The package contains the following functions:
