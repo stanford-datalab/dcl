@@ -18,7 +18,7 @@ Character vector giving the path to the downloaded and unzipped file.
 Downloads a zipped file from the internet and unzips it to a directory.
 }
 \examples{
-\donttest{
+\dontrun{
 file_download_unzip(
   url_file = "https://github.com/dcl-docs/project/archive/master.zip",
   path = "~/my/dir"

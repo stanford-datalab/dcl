@@ -19,7 +19,7 @@ Recursively creates a directory using a template downloaded from
 the internet.
 }
 \examples{
-\donttest{
+\dontrun{
 create_directory_from_template(
   "new_dir",
   "https://github.com/dcl-docs/project/archive/master.zip"

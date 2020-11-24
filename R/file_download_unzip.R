@@ -10,7 +10,7 @@
 #' @keywords internal
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' file_download_unzip(
 #'   url_file = "https://github.com/dcl-docs/project/archive/master.zip",
 #'   path = "~/my/dir"

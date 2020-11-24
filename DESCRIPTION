@@ -1,5 +1,5 @@
 Package: dcl
-Version: 0.3.6.9000
+Version: 0.3.7.9000
 Title: Tools for Data Challenge Lab
 Description: Tools for Data Challenge Lab.
 Authors@R: 
@@ -34,5 +34,5 @@ Imports:
     rstudioapi
 Suggests:
     testthat (>= 2.1.0)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)

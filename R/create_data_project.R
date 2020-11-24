@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{create_data_project("path/to/project")}
+#' \dontrun{create_data_project("path/to/project")}
 create_data_project <- function(
   path,
   project = TRUE,
@@ -59,7 +59,7 @@ create_data_project <- function(
 #' @keywords internal
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' create_directory_from_template(
 #'   "new_dir",
 #'   "https://github.com/dcl-docs/project/archive/master.zip"
@@ -88,7 +88,7 @@ create_directory_from_template <- function(path, url_template) {
 #' @keywords internal
 #'
 #' @examples
-#' \donttest{copy_file(path = "old/dir", new_path = "new/dir")}
+#' \dontrun{copy_file(path = "old/dir", new_path = "new/dir")}
 copy_file <- function(path, new_path, all = TRUE) {
   dir_ls(path, all = all) %>%
     walk(file.copy, to = new_path, recursive = TRUE, overwrite = TRUE)

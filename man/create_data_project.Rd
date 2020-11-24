@@ -27,5 +27,5 @@ Creates a project from a template. By default, creates a project
 from this template: \url{https://github.com/dcl-docs/project}
 }
 \examples{
-\donttest{create_data_project("path/to/project")}
+\dontrun{create_data_project("path/to/project")}
 }

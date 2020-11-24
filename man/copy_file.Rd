@@ -21,6 +21,6 @@ Recursively copies a file, printing out messages saying which
 sub-directories were created.
 }
 \examples{
-\donttest{copy_file(path = "old/dir", new_path = "new/dir")}
+\dontrun{copy_file(path = "old/dir", new_path = "new/dir")}
 }
 \keyword{internal}
