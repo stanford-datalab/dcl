@@ -25,7 +25,7 @@ create_data_project <- function(
   name <- path_file(path)
 
   if (project) {
-    usethis:::check_not_nested(path_dir(path), name)
+    usethis:::challenge_nested_project(path_dir(path), name)
   }
 
   create_directory_from_template(path, template)
